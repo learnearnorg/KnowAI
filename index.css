@@ -1,0 +1,142 @@
+
+body { 
+  margin: 0; 
+  font-family: 'Merriweather', serif;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+/* Custom CSS for Knowledge Base Sidebar */
+.pattern-cross {
+    background: 
+        linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px) 0 0,
+        linear-gradient(180deg, rgba(255,255,255,0.15) 1px, transparent 1px) 0 0;
+    background-size: 20px 20px;
+}
+
+/* Atmospheric Background Components */
+.living-atmosphere {
+  position: relative;
+  overflow: hidden;
+  background-color: #F8F9FA;
+  transition: background-color 0.5s ease;
+}
+
+.dark .living-atmosphere {
+  background-color: #0f0f0f;
+}
+
+.living-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(16, 185, 129, 0.1), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.12), transparent 50%);
+  filter: blur(60px);
+  animation: atmosphere-drift 25s infinite alternate ease-in-out;
+}
+
+@keyframes atmosphere-drift {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.1) translate(2%, 3%); }
+  100% { transform: scale(1) translate(-1%, -2%); }
+}
+
+/* Precision Grid */
+.precision-grid {
+  background-size: 45px 45px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+.dark .precision-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Star Depth (Parallax) */
+.star-parallax {
+  position: relative;
+}
+
+.star-parallax::before,
+.star-parallax::after {
+  content: "";
+  position: absolute;
+  inset: -100px;
+  z-index: 1;
+  pointer-events: none;
+  background-image: radial-gradient(white 1px, transparent 1px);
+}
+
+.star-parallax::before {
+  background-size: 150px 150px;
+  opacity: 0.1;
+  animation: star-flow 80s linear infinite;
+}
+
+.star-parallax::after {
+  background-size: 250px 250px;
+  opacity: 0.15;
+  animation: star-flow 50s linear infinite reverse;
+}
+
+.dark .star-parallax::before,
+.dark .star-parallax::after {
+  opacity: 0.3;
+}
+
+@keyframes star-flow {
+  from { transform: translateY(0); }
+  to { transform: translateY(500px); }
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-panel {
+  background: rgba(30, 30, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Dark theme scrollbar */
+.chat-container::-webkit-scrollbar { width: 6px; }
+.chat-container::-webkit-scrollbar-thumb { background-color: #E2E2E2; border-radius: 3px; }
+.dark .chat-container::-webkit-scrollbar-thumb { background-color: #4A4A4A; }
+.chat-container::-webkit-scrollbar-track { background-color: #F8F9FA; }
+.dark .chat-container::-webkit-scrollbar-track { background-color: #282828; }
+
+/* Basic styling for rendered markdown */
+.prose h1 { font-size: 1.5em; font-weight: bold; margin-top: 0.8em; margin-bottom: 0.4em; color: #1A1A1A; }
+.dark .prose h1 { color: #E2E2E2; }
+.prose h2 { font-size: 1.25em; font-weight: bold; margin-top: 0.7em; margin-bottom: 0.35em; color: #1A1A1A; }
+.dark .prose h2 { color: #E2E2E2; }
+.prose h3 { font-size: 1.1em; font-weight: bold; margin-top: 0.6em; margin-bottom: 0.3em; color: #1A1A1A; }
+.dark .prose h3 { color: #E2E2E2; }
+.prose p { margin-bottom: 0.8em; line-height: 1.6; color: #374151; }
+.dark .prose p { color: #E2E2E2; }
+.prose ul, .prose ol { margin-left: 1.25em; margin-bottom: 0.8em; color: #374151; }
+.dark .prose ul, .dark .prose ol { color: #E2E2E2; }
+.prose li { margin-bottom: 0.3em; }
+.prose strong { font-weight: bold; color: #111827; }
+.dark .prose strong { color: #F3F4F6; }
+.prose em { font-style: italic; }
+.prose del { text-decoration: line-through; color: #9CA3AF; }
+.prose code { padding: 0.2em 0.4em; border-radius: 3px; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; background-color: #F3F4F6; color: #111827; }
+.dark .prose code { background-color: #374151; color: #F3F4F6; }
+.prose pre { padding: 1em; border-radius: 6px; overflow-x: auto; margin-bottom: 1em; position: relative; border: 1px solid rgba(0,0,0,0.05); }
+.dark .prose pre { border-color: rgba(255,255,255,0.05); }
+.prose pre code { background-color: transparent; padding: 0; font-size: 0.85em; color: inherit; }
+.prose blockquote { border-left: 4px solid #E5E7EB; margin-left: 0; padding-left: 1.2em; color: #6B7280; margin-bottom: 1em; font-style: italic; }
+.dark .prose blockquote { border-left-color: #4A4A4A; color: #A8ABB4; }
+.prose a { color: #2563EB; text-decoration: underline; font-weight: 500; }
+.dark .prose a { color: #79B8FF; }
